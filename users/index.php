@@ -52,6 +52,7 @@ if (isset($_POST['multiselect'])) {
                 <th>Gender</th>
                 <th>City</th>
                 <th>Hobbies</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
             <?php
@@ -67,6 +68,7 @@ if (isset($_POST['multiselect'])) {
                     <td><?php echo $row->gender; ?></td>
                     <td><?php echo $row->city; ?></td>
                     <td><?php echo $row->hobbies; ?></td>
+                    <td><img src="../assets/uploaded files/<?php echo $row->user_image; ?>" height="50"></td>
 
                     <td>
                         <a href="show.php?id=<?php echo $row->id ?>">Show</a>&nbsp;&nbsp;

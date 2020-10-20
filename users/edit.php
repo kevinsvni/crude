@@ -55,7 +55,7 @@ if (isset($_POST['update'])) {
 
 </head>
 
-<body>
+<body style="background-image: url('../assets/img/wallpaper2.jpg'); background-size:cover" >
     <div class="myDiv">
         <form method="post" onsubmit="return validation()">
             <h1><b>UPDATION FORM</b></h1>
@@ -171,6 +171,14 @@ if (isset($_POST['update'])) {
                                                                                                 ?>>
                             <span class="checkmark"></span>
                         </label>
+                    </td>
+                </tr>
+                <tr>
+                <td>
+                        <label for="image">Image:</label>
+                    </td>
+                    <td>
+                        <input type="file" name="user_image" id="user_image" title="File Selected"> 
                     </td>
                 </tr>
                 <tr>

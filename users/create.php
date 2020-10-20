@@ -8,10 +8,20 @@ if (isset($_POST['submit'])) {
     $gender = @$_POST['gender'];
     $city = $_POST['city'];
     $hobbies = implode(", ", $_POST['hobbies']);
+
+    $filename = $_FILES['user_image']['name'];
+    $tempname = $_FILES['user_image']['tmp_name'];
+
+    $destination = '../assets/uploaded files/'.$filename;
+    move_uploaded_file($tempname, $destination);
+
+    // $destination = '../assets/uploaded files/';
+    // move_uploaded_file($tempname, $destination.$filename);
+
     $password = $_POST['password'];
-    $insertquery = "INSERT INTO `users` (`fname`, `lname`, `contact`, `email`, `gender`, `city`, `hobbies`, `password`) VALUES ('$fname', '$lname', '$contact', '$email', '$gender', '$city', '$hobbies', '$password')";
+    $insertquery = "INSERT INTO `users` (`fname`, `lname`, `contact`, `email`, `gender`, `city`, `user_image`,`hobbies`, `password`) VALUES ('$fname', '$lname', '$contact', '$email', '$gender', '$city', '$filename','$hobbies', '$password')";
     if ($db->query($insertquery)) {
-        header('location:index.php');
+        // header('location:index.php');
     } else if (mysqli_errno($db) == 1062) {
         echo "Either the mobile number or email has been already used.";
     } else {
@@ -32,9 +42,9 @@ if (isset($_POST['submit'])) {
 
 </head>
 
-<body>
+<body style="background-image: url('../assets/img/world wallpaper.jpg'); background-size:cover">
     <div class="myDiv">
-        <form method="post" onsubmit="return validation()">
+        <form method="post" onsubmit="return validation()" enctype="multipart/form-data">
             <h1><b>REGISTRATION FORM</b></h1>
             <table class="myTab">
                 <tr>
@@ -108,6 +118,14 @@ if (isset($_POST['submit'])) {
                             <input type="checkbox" id="coding" name="hobbies[]" value="Coding">
                             <span class="checkmark"></span>
                         </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="image">Image:</label>
+                    </td>
+                    <td>
+                        <input type="file" name="user_image" id="user_image">
                     </td>
                 </tr>
                 <tr>
